@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <!--引入css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/css/style.css' %}"/>
+    <!--引入 js    -->
+    <script type="text/javascript" src="{% static 'myapp/js/myapp.js' %}"></script>
+</head>
+
+<body>
+    <img src="{% static 'myapp/image/1.jpg' %}">
+    <!-- 只能写死 -->
+    <a href="/good/123">链接</a>
+    <a href="{% url 'myapp:good' %}">链接2</a>
+    <!-- HTML转译   -->
+    <h1>{{code}}</h1>
+    <h1>{{code|escape}}</h1>
+    <h1>{{code|safe}}</h1>
+    {% autoescape off %}
+    {{code}}
+    {% endautoescape %}
+    <h1>{{stu.sname}}</h1>
+
+    {% if num %}
+        <h1>ysx is a handsome man</h1>
+    {% endif %}
+    <ul>
+        <h1>学生列表</h1>
+        {% for stu in students %}
+        <!--不同的行，不同的颜色   -->
+        {% if forloop.counter|divisibleby:2 %}
+        <li style="color:red">
+            {{forloop.counter}} -- {{stu.sname}} --- {{stu.sgrade}}
+        </li>
+        {% else %}
+        <li style="color:blue">
+            {{forloop.counter}} -- {{stu.sname}} --- {{stu.sgrade}}
+        </li>
+        {% endif %}
+
+        {%empty%}
+        <li>目前没有学生</li>
+    {% endfor %}
+    </ul>
+    {% comment %}
+    注释的内容
+    <h1>ysx is a good man</h1>
+    {{stu.sname}}
+    {% endcomment %}
+
+    <h1>{{str|upper}}</h1>
+    <h1>{{str}}</h1>
+    <h1>{{list|join:'#'}}</h1>
+    <h1>{{test|default:'没有'}}</h1>
+    <!--    加减乘除-->
+    <h1>num = {{num}}</h1>
+    <h1>num = {{num|add:10}}</h1>
+    <h1>num = {{num|add:-5}}</h1>
+    <!-- num/1*5   -->
+    <h1>num = {% widthratio num  1 5 %}</h1>
+    <!-- num/5*1   -->
+    <h1>num = {% widthratio num 2 1 %}</h1>
+
+
+
+
+</body>
+</html>

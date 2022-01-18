@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学生信息</title>
+</head>
+<body>
+    <h1>学生信息列表</h1>
+    <u1>
+        <!--调用的时候传过来一个students的列表：[student1, student2, student3...]  --->
+        {%for student in students%}
+        <li>
+            {{student.sname}}----{{student.scontend}}----{{student.sgrade}}
+        </li>
+        {%endfor%}
+    </u1>
+</body>
+</html>
